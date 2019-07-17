@@ -1,0 +1,22 @@
+#获取所有人接口
+GET http://localhost:8093/kl/demo/gets
+Accept: application/json
+###
+
+#获取指定name的人
+GET http://localhost:8093/kl/demo/get?name=kl
+Accept: application/json
+###
+
+#获取指定name的人
+POST http://localhost:8093/kl/demo/save
+Content-Type: application/json
+
+{
+  "name": "陈某某",
+  "age" : 100
+}
+###
+#删除指定ID
+GET http://localhost:8093/kl/demo/delete?id=6
+###

@@ -10,7 +10,11 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>kotlin-ktor-netty-jasyncsql</module>
+        <module>spring-boot-webflux-tomcat-jpa</module>
+        <module>spring-boot-webflux-netty-jpa</module>
         <module>spring-boot-webflux-r2dbc-mysql</module>
+        <module>spring-boot-webmvc-jpa</module>
         <module>spring-boot-kotlin</module>
     </modules>
 

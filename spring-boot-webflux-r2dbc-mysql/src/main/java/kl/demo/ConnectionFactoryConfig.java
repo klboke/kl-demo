@@ -16,6 +16,7 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 @ConfigurationProperties(prefix = "spring.myr2dbc")
 @EnableR2dbcRepositories
 class ConnectionFactoryConfig extends AbstractR2dbcConfiguration {
+
     private String username;
     private String password;
     private Integer port;
