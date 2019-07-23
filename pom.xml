@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>spring-boot-etcd-jetcd</module>
         <module>kotlin-ktor-netty-jasyncsql</module>
         <module>spring-boot-webflux-tomcat-jpa</module>
         <module>spring-boot-webflux-netty-jpa</module>
