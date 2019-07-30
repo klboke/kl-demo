@@ -26,9 +26,7 @@ public class JEtcdTest {
     @Before
     public void setUp() {
          client = Client.builder().endpoints(
-                "http://127.0.0.1:2379",
-                "http://127.0.0.1:3379",
-                "http://127.0.0.1:4379"
+                "http://127.0.0.1:2379"
         ).build();
          lock = client.getLockClient();
          lease = client.getLeaseClient();
@@ -37,6 +35,7 @@ public class JEtcdTest {
     @Test
     public void lockTest1toMaster() throws InterruptedException, ExecutionException {
         long leaseId = lease.grant(lockTTl).get().getID();
+
          lease.keepAlive(leaseId, new StreamObserver<LeaseKeepAliveResponse>() {
              @Override
              public void onNext(LeaseKeepAliveResponse value) {
@@ -45,11 +44,13 @@ public class JEtcdTest {
 
              @Override
              public void onError(Throwable t) {
+                 scheduledThreadPool.shutdownNow();
                  t.printStackTrace();
              }
 
              @Override
              public void onCompleted() {
+                 scheduledThreadPool.shutdownNow();
              }
          });
         lock.lock(lockKey, leaseId).get().getKey();
@@ -74,11 +75,14 @@ public class JEtcdTest {
 
             @Override
             public void onError(Throwable t) {
+                scheduledThreadPool.shutdownNow();
+
                 t.printStackTrace();
             }
 
             @Override
             public void onCompleted() {
+                scheduledThreadPool.shutdownNow();
 
             }
         });
@@ -103,12 +107,13 @@ public class JEtcdTest {
 
             @Override
             public void onError(Throwable t) {
+                scheduledThreadPool.shutdownNow();
                 t.printStackTrace();
             }
 
             @Override
             public void onCompleted() {
-
+                scheduledThreadPool.shutdownNow();
             }
         });
         lock.lock(lockKey, leaseId).get().getKey();
