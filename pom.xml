@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>spring-boot-java9-http2</module>
         <module>spring-boot-etcd-jetcd</module>
         <module>kotlin-ktor-netty-jasyncsql</module>
         <module>spring-boot-webflux-tomcat-jpa</module>
@@ -17,6 +18,7 @@
         <module>spring-boot-webflux-r2dbc-mysql</module>
         <module>spring-boot-webmvc-jpa</module>
         <module>spring-boot-kotlin</module>
+        <module>java-util-concurrent</module>
     </modules>
 
     <properties>

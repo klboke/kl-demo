@@ -10,13 +10,13 @@
     </parent>
 
     <groupId>kl.demo</groupId>
-    <artifactId>spring-boot-webmvc-jpa</artifactId>
+    <artifactId>spring-boot-java9-http2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-webmvc-jpa</name>
+    <name>spring-boot-java9-http2</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>1.9</java.version>
     </properties>
 
     <dependencies>
@@ -28,11 +28,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.9</version>
-        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
