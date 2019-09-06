@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 
 /**
+ * 简版的栅栏实现
  * @author: kl @kailing.pub
  * @date: 2019/9/4
  */
@@ -52,6 +53,5 @@ public class KlCyclicBarrier {
             threads.put(thread.getName(), thread);
             LockSupport.park(thread);
         }
-
     }
 }

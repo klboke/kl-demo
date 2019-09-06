@@ -841,8 +841,9 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
         ArrayList<Thread> list = new ArrayList<Thread>();
         for (Node p = tail; p != null; p = p.prev) {
             Thread t = p.thread;
-            if (t != null)
+            if (t != null) {
                 list.add(t);
+            }
         }
         return list;
     }
@@ -872,8 +873,9 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
         for (Node p = tail; p != null; p = p.prev) {
             if (p.isShared()) {
                 Thread t = p.thread;
-                if (t != null)
+                if (t != null) {
                     list.add(t);
+                }
             }
         }
         return list;

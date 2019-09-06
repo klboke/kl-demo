@@ -123,7 +123,7 @@ public class Test {
 
     @org.junit.Test
     public void testKlLatch() {
-        KlLatch latch = new KlLatch(2);
+        KlCountDownLatch latch = new KlCountDownLatch(2);
         executor.submit(() -> {
             try {
                 TimeUnit.SECONDS.sleep(2);

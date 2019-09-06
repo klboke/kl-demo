@@ -1,5 +1,9 @@
 package kl.demo;
-
+/**
+ * 简版的锁实现
+ * @author: kl @kailing.pub
+ * @date: 2019/9/2
+ */
 public class KlLock {
     class Sync extends AbstractQueuedSynchronizer {
 

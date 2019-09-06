@@ -7,12 +7,14 @@ import java.util.concurrent.locks.LockSupport;
  * @author: kl @kailing.pub
  * @date: 2019/9/2
  */
-public class KlLatch {
+public class KlCountDownLatch {
     private Thread thread;
     private int count;
 
-    public KlLatch(int count) {
-        if (count < 0) throw new IllegalArgumentException("count < 0");
+    public KlCountDownLatch(int count) {
+        if (count < 0) {
+            throw new IllegalArgumentException("count < 0");
+        }
         this.count = count;
     }
 
@@ -23,7 +25,7 @@ public class KlLatch {
     }
 
     public void await() {
-        this.thread = thread.currentThread();
+        this.thread = Thread.currentThread();
         LockSupport.park(this);
     }
 }
