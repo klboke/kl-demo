@@ -233,7 +233,7 @@ java.util.concurrent中
 ### 12、请描述致力于制定本规范的专家组的预期工作模式。
 电子邮件，电话会议和不常见的会议。我们还将使用或创建一个开放的邮件列表，供专家组以外的其他感兴趣的人讨论。
 
-#解密LockSupport和Unsafe
+# 解密LockSupport和Unsafe
 前面说到AQS是并发包下的精髓所在，那么LockSupport和Unsafe就是整个JSR-166并发包的所有功能实现的灵魂，纵观整个并发包下的代码，无处不见LockSupport和Unsafe的身影。LockSupport提供了两个关键方法，park和unpark，用来操作线程的阻塞和放行，功能可以类比Object的wait和notify，但是比这两个api更灵活。下面是博主简化了的实现（JDK中不是这样的）
 ```
 /**
