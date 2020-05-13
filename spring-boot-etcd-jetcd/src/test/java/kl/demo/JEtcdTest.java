@@ -2,6 +2,8 @@ package kl.demo;
 
 import io.etcd.jetcd.*;
 import io.etcd.jetcd.lease.LeaseKeepAliveResponse;
+import io.etcd.jetcd.options.PutOption;
+import io.etcd.jetcd.options.WatchOption;
 import io.etcd.jetcd.watch.WatchResponse;
 import io.grpc.stub.StreamObserver;
 import org.junit.Before;
@@ -31,7 +33,7 @@ public class JEtcdTest {
     @Before
     public void setUp() {
          client = Client.builder().endpoints(
-                "http://192.168.1.159:2379"
+                "http://localhost:2379"
         ).build();
          lock = client.getLockClient();
          lease = client.getLeaseClient();
@@ -42,8 +44,11 @@ public class JEtcdTest {
     public void watchTest()throws Exception{
         ByteSequence key = ByteSequence.from("/root/lock/kl", StandardCharsets.UTF_8);
         ByteSequence value = ByteSequence.from("{aaa}", StandardCharsets.UTF_8);
-        client.getKVClient().put(key,value);
-        watch.watch(key, new Watch.Listener() {
+
+      long id =  client.getLeaseClient().grant(10).get().getID();
+
+       client.getKVClient().put(key,value,PutOption.newBuilder().withLeaseId(id).build());
+        watch.watch(key, WatchOption.newBuilder().withPrevKV(true).withNoDelete(true).build(),new Watch.Listener() {
             @Override
             public void onNext(WatchResponse response) {
                 System.out.println("监听到数据变更了:"+response.toString());
@@ -65,7 +70,7 @@ public class JEtcdTest {
 
     @Test
     public void lockTest1toMaster() throws InterruptedException, ExecutionException {
-        long leaseId = lease.grant(lockTTl).get().getID();
+        long leaseId = lease.grant(20).get().getID();
 
          lease.keepAlive(leaseId, new StreamObserver<LeaseKeepAliveResponse>() {
              @Override
@@ -78,12 +83,12 @@ public class JEtcdTest {
 
                  scheduledThreadPool.shutdown();
                  scheduledThreadPool = null;
-                 try {
-                     scheduledThreadPool = Executors.newScheduledThreadPool(2);
-                     lockTest1toMaster();
-                 } catch (Exception e) {
-                       e.printStackTrace();
-                 }
+//                 try {
+//                     scheduledThreadPool = Executors.newScheduledThreadPool(2);
+//                     lockTest1toMaster();
+//                 } catch (Exception e) {
+//                       e.printStackTrace();
+//                 }
                  t.printStackTrace();
              }
 

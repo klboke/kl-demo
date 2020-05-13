@@ -20,6 +20,35 @@ public class Test {
     private KlCyclicBarrier klcyclicBarrier = new KlCyclicBarrier(3, () -> out.println("通过屏障！"));
 
     @org.junit.Test
+    public void testSleep()throws Exception{
+
+        executor.submit(()->{
+            long start = System.currentTimeMillis();
+            IntStream.range(0,10).forEach(i->{
+                try {
+                    Thread.sleep(12);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+            long end = System.currentTimeMillis();
+            out.println("线程一耗时：" + (end - start));
+        });
+        executor.submit(()->{
+            long start = System.currentTimeMillis();
+            IntStream.range(0,10).forEach(i->{
+                try {
+                    Thread.sleep(101);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+            long end = System.currentTimeMillis();
+            out.println("线程二耗时：" + (end - start));
+        });
+        in.read();
+    }
+    @org.junit.Test
     public void testKlCyclicBarrier() throws Exception{
 
         executor.submit(()->{

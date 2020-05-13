@@ -19,6 +19,8 @@
         <module>spring-boot-webmvc-jpa</module>
         <module>spring-boot-kotlin</module>
         <module>java-util-concurrent</module>
+        <module>java-scoket-netty</module>
+        <module>spring-boot-encrypt-jdbc</module>
     </modules>
 
     <properties>
